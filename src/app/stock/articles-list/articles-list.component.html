@@ -1,0 +1,45 @@
+<div class="d-flex flex-column">
+        <div class="container-fluid">
+            <h2 class="text-dark mb-4">Products</h2>
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 font-weight-bold">Products
+                        <button (click)="onNewProduct()" class="btn btn-primary float-end align-content-end">Add Product</button>
+
+                    </p>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive table mt-2">
+                        <table class="table my-0">
+                            <thead>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Purchase price</th>
+                                <th scope="col">Selling price </th>
+                                <th scope="col">image</th>
+                                <th scope="col">Actions</th>
+                            </thead>
+                            <tbody>
+                                <tr app-article-item *ngFor="let article of stock" [article]="article">
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row">
+        
+    </div>
+    <div class="row">
+
+    </div>
+</div>

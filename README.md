@@ -1,6 +1,6 @@
-# BmkStore
+# Store
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
+A store  app with authentication that will allow you to manage your inventory and sales. This app was built with angular Js, bootstrap and a firebase as a backend service.
 
 ## Development server
 

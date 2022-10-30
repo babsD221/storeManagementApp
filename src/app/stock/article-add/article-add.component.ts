@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataStorageService } from 'src/app/data-storage.service';
+import { ArticleService } from 'src/app/services/article.service';
 import { Article } from '../article.model';
 import { StockService } from '../stock.service';
 
@@ -19,7 +19,8 @@ export class ArticleAddComponent implements OnInit {
     sPrice:new FormControl,
     imgPath: new FormControl
   });
-  constructor(private dataService:DataStorageService,private stockService:StockService,private router: Router) { }
+  article: Article = new Article();
+  constructor(private stockService:StockService,private router: Router, private articleService:ArticleService) { }
 
   ngOnInit(): void {
   }
@@ -38,14 +39,15 @@ export class ArticleAddComponent implements OnInit {
      id =this.stockService.getStock().length +1
     }
     console.log("identifiant " + id);
-    const name = this.articleForm.value.name;
-    const quantity = this.articleForm.value.quantity;
-    const pPrice = this.articleForm.value.pPrice;
-    const sPrice = this.articleForm.value.sPrice;
-    const imgPath = this.articleForm.value.imgPath;
-    const article = new Article(id,name,quantity,pPrice,sPrice,imgPath);
-    this.stockService.addArticle(article);
-    this.dataService.addArticle(article).subscribe(()=>{
+    this.article.id = id.toString();
+    const name = this.articleForm.value.name!;
+    const quantity = this.articleForm.value.quantity!;
+    const pPrice = this.articleForm.value.pPrice!;
+    const sPrice = this.articleForm.value.sPrice!;
+    const imgPath = this.articleForm.value.imgPath!;
+    const article = new Article('1',name,quantity,pPrice,sPrice,imgPath);
+    this.articleService.create(article).subscribe((resData)=>{
+      console.log(resData);
       this.router.navigate(['stock']);
     });
 

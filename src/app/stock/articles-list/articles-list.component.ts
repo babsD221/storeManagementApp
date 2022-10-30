@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from '../article.model';
 import { Observable } from 'rxjs';
-import { DataStorageService } from 'src/app/data-storage.service';
 import { StockService } from '../stock.service';
+import { ArticleService } from 'src/app/services/article.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-articles-list',
@@ -11,18 +12,15 @@ import { StockService } from '../stock.service';
   styleUrls: ['./articles-list.component.css']
 })
 export class ArticlesListComponent implements OnInit {
-  stock: Article[] =[];
+  stock?: Article[];
   obs:Observable<Article[]>;
-  constructor(private dataService:DataStorageService,private stockService:StockService, private router:Router, private route:ActivatedRoute) {
+  constructor(private articleService:ArticleService,private stockService:StockService, private router:Router, private route:ActivatedRoute) {
    }
 
   ngOnInit(): void {
-    this.dataService.fetchArticles().subscribe(
-      articles =>{
-        this.stockService.setStock(Object.keys(articles).map((key:any) =>{return articles[key]}));
-        this.stock = this.stockService.getStock();
-      } 
-     );
+     this.articleService.getAll().subscribe((data) => {
+      this.stock =Object.keys(data).map((key:any) => {data[key].key = key; return data[key] });
+    });
     }
 
   onNewProduct() {

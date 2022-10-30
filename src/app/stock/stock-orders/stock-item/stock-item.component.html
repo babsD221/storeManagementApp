@@ -1,0 +1,17 @@
+<td >{{ order.clientName}}</td>
+<td>{{ order.address}}</td>
+<td>{{ order.sellingPrice}}</td>
+<td class="center">{{ order.product_name}}</td>
+<td>
+    <img [src]="order.product_imgPath" alt="" style="max-height:40px ;">
+</td>
+<td>{{ order.quantity}}</td>
+<td>{{ order.details}}</td>
+<td>{{order.date}}
+</td>
+<td>
+    <div class="d-flex flex-row gap-2">
+        <button type="button" class="btn btn-outline-dark" (click)="deleteOrder()">Delete</button>
+        <button type="button" (click)="confirmOrder()" class="btn btn-outline-primary">Confirm</button>
+    </div>
+</td>

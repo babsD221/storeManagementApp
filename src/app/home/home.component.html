@@ -1,0 +1,53 @@
+<div class="d-flex flex-column">
+    <div class="container-fluid">
+        <h1 class="text-dark mb-4">Summary</h1>
+        <div class="card shadow w-50 m-auto">
+            <div class="card-body text-center">
+                <div class="d-flex flex-column justify-content-around align-content-center">
+                    <div class="row">
+                        <div class="col-sm">
+                                <h1 class="card-title align-baseline">Total Sales</h1>
+                         </div>
+                        <div class="col-sm">
+                            <h2 class="card-text">{{ totalSales}}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                                <h1 class="card-title align-baseline">Sold items</h1>
+                        </div>
+                        <div class="col-sm">
+                            <h2 class="card-text">{{ soldQuantity}}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                                <h1 class="card-title align-baseline">Inventory value</h1>
+                        </div>
+                        <div class="col-sm">
+                            <h2 class="card-text">{{ stockValue}}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm col-xs-12">
+                                <h1 class="card-title align-baseline">Remaining quantity</h1>
+                        </div>
+                        <div class="col-sm">
+                            <h2 class="card-text">{{ stockQuantity}}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                                <h1 class="  card-title align-baseline">Orders in progress</h1>
+                        </div>
+                        <div class="col-sm col-xs-12">
+                            <h2 [class.text-bg-danger]="orderNumbers > 0" class="card-text">{{ orderNumbers}}</h2>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+</div>

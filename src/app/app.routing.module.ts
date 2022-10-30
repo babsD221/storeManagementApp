@@ -3,13 +3,22 @@ import { RouterModule, Routes } from '@angular/router';
 import { StockComponent } from './stock/stock.component';
 import { SalesComponent } from './sales/sales.component';
 import { ArticleAddComponent } from './stock/article-add/article-add.component';
+import { StockOrderAddComponent } from './stock/stock-order-add/stock-order-add.component';
+import { StockOrdersComponent } from './stock/stock-orders/stock-orders.component';
+import { HomeComponent } from './home/home.component';
+import { AuthPageComponent } from './auth-page/auth-page.component';
+import { AuthGard } from './services/aut-guard';
 
 const routes: Routes = [
-  { path: 'stock', component: StockComponent },
-  {path: 'sales',component: SalesComponent},
-  { path: 'stock/add-article', component: ArticleAddComponent },
+  {path:'home',canActivate:[AuthGard],component: HomeComponent},
+  { path: 'stock',canActivate:[AuthGard], component: StockComponent },
+  {path: 'sales',canActivate:[AuthGard],component: SalesComponent},
+  {path: 'orders',canActivate:[AuthGard],component: StockOrdersComponent},
 
-  {path: '', redirectTo: '/stock',pathMatch:'full'},
+  { path: 'stock/add-article',canActivate:[AuthGard], component: ArticleAddComponent },
+  { path: 'stock/add-order',canActivate:[AuthGard], component: StockOrderAddComponent },
+  {path: '', redirectTo: '/home',pathMatch:'full'},
+  {path: 'auth', component:AuthPageComponent}
 ];
 
 @NgModule({

@@ -7,11 +7,8 @@
         <img [src]="article.imgPath" alt="" style="max-height:40px ;">
     </td>
     <td>
-        <a href="#">
-            <mat-icon aria-hidden="false" aria-label="edit article" fontIcon="edit"></mat-icon>
-        </a>
-        <a href="#">
-            <mat-icon color="warn" aria-hidden="false" aria-label="delete article" fontIcon="delete"></mat-icon>
-
-        </a>
+        <div class="d-flex flex-row gap-2">
+            <button type="button" class="btn btn-outline-dark">Edit</button>
+            <button type="button" (click)="placeOrder()" class="btn btn-outline-primary">New Order</button>
+        </div>
     </td>

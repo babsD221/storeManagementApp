@@ -1,0 +1,92 @@
+<div>
+    <div class="d-flex flex-column">
+        <div class="container-fluid">
+            <h3 class="text-dark mb-4">Add Product</h3>
+            <div class="card shadow">
+                <div class="card">
+                    <div class="card-header">
+                        Header
+                    </div>
+                    <div class="card-body">
+                        <form #formData [formGroup]="orderForm" (ngSubmit)="onSubmit($event)" class="needs-validation">
+                            <div class="form-row my-4">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="name">
+                                            <strong>Name</strong>
+                                            <br/>
+                                        </label>
+                                        <input formControlName="name" class="form-control" type="text" id="name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-4">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="sellingPrice">
+                                            <strong>Selling Price</strong>
+                                            <br/>
+                                        </label>
+                                        <input  formControlName="sellingPrice" class="form-control" type="text" id="sellingPrice">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-4">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="quantity">
+                                           <strong>Quantity</strong> <br/>
+                                        </label>
+                                        <input  class="form-control" type="number" id="quantity" formControlName="quantity">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-4">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="" for="details">
+                                          <strong>Details</strong>  
+                                        </label>
+                                        <input  class="form-control" type="string" id="details" formControlName="details">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-4">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="address">
+                                           <strong> Address </strong> 
+                                        </label>
+                                        <input  class="form-control" type="number" id="address" formControlName="address">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-4">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="phoneNumber">
+                                           <strong>Phone number</strong> 
+                                        </label>
+                                        <input  class="form-control" type="text" id="imgPath" formControlName="phoneNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row my-4">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <button type="submit" name="submit" class="btn btn-primary float-end"> Add Product</button>
+                                        <button  class="btn btn-secondary float-end mx-2" > Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Footer
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

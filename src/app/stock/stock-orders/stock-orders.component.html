@@ -1,0 +1,32 @@
+<div class="d-flex flex-column">
+    <div class="container-fluid">
+        <h2 class="text-dark mb-4">Orders</h2>
+        <div class="card shadow">
+            <div class="card-header py-3">
+                <p class="text-primary m-0 font-weight-bold">Orders
+                </p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive table mt-2">
+                    <table class="table my-0">
+                        <thead>
+                            <th scope="col">Name</th>
+                            <th scope="col">Adress</th>
+                            <th scope="col">Price </th>
+                            <th scope="col">image</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Details</th>
+                            <th scope="col">Date </th>
+                            <th scope="col">Actions</th>
+                        </thead>
+                        <tbody>
+                            <tr app-stock-item *ngFor="let order of orders" [order]="order">
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

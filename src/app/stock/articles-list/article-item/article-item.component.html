@@ -1,17 +1,13 @@
-    <td >{{ article.id}}</td>
     <td class="center">{{ article.name}}</td>
-    <td>{{ article.quantity}}</td>
-    <td>{{ article.purchasePrice}}</td>
-    <td>{{ article.sellingPrice}}</td>
-    <td>
+    <td class="center">{{ article.quantity}}</td>
+    <td class="center">{{ article.purchasePrice}}</td>
+    <td class="center">{{ article.sellingPrice}}</td>
+    <td class="center">
         <img [src]="article.imgPath" alt="" style="max-height:40px ;">
     </td>
-    <td>
-        <a href="#">
-            <mat-icon aria-hidden="false" aria-label="edit article" fontIcon="edit"></mat-icon>
-        </a>
-        <a href="#">
-            <mat-icon color="warn" aria-hidden="false" aria-label="delete article" fontIcon="delete"></mat-icon>
-
-        </a>
+    <td class="center">
+        <div class="d-flex flex-row gap-2">
+            <button type="button" class="btn btn-outline-dark">Edit</button>
+            <button type="button" (click)="placeOrder()" class="btn btn-outline-primary">Order</button>
+        </div>
     </td>

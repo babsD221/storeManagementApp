@@ -1,0 +1,13 @@
+@media (max-width: 750px) {
+
+    td {
+        font-size: 0.7rem;
+        font-weight: 500;
+    }
+    button {
+        font-size: 0.5rem;
+        font-weight: 500;
+
+    }
+
+}

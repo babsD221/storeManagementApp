@@ -26,10 +26,10 @@ export class AuthenticationService {
 
   handleAuthentication(email: string, password: string,userId: string, token: string,expiresIn:number) {
 
-    const expireDate = new Date(new Date().getTime() + expiresIn *1000);
+    const expireDate = new Date(new Date().getTime() + expiresIn);
     const currentUser = new CurrentUser(email,userId,token,expireDate);
     this.user.next(currentUser);
-    this.autoLogout(expiresIn * 1000);
+    this.autoLogout(expiresIn);
     localStorage.setItem('userData',JSON.stringify(currentUser));
   }
   login(email: string, password: string) {

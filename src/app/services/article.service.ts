@@ -22,13 +22,19 @@ export class ArticleService {
     //return this.articlesRef;
   }
 
+  get(key: string) {
+    return this.http.get<Article>(environment.databaseURL + 'articles/' + key + '.json');
+  }
+
   create(article: Article) {
     return this.http.post(this.url,article);
     //return this.articlesRef.push(article);
   }
 
   update(key: string, value: any) {
-    return this.http.put(this.url+key,value);
+    console.log(key);
+    console.log(value);
+    return this.http.put(environment.databaseURL + 'articles/'+ key + '.json',value);
 
   }
 

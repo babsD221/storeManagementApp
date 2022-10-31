@@ -21,7 +21,8 @@ export class ArticlesListComponent implements OnInit {
      this.articleService.getAll().subscribe((data) => {
       this.stock =Object.keys(data).map((key:any) => {data[key].key = key; return data[key] });
     });
-    }
+    }  
+    
 
   onNewProduct() {
     this.router.navigate(['add-article'], {relativeTo:this.route});

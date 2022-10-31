@@ -15,7 +15,10 @@ export class SalesComponent implements OnInit {
 
   ngOnInit(): void {
     this.saleService.getAll().subscribe((data) => {
-      this.sales =Object.keys(data).map((key:any) => {data[key].key = key; return data[key] });
+      if(data) {
+        this.sales =Object.keys(data).map((key:any) => {data[key].key = key; return data[key] });
+
+      }
     });
   }
 

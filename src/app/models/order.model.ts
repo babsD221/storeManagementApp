@@ -9,6 +9,7 @@ export class Order {
     public phoneNumber?: string;
     public key?: string | null;
     public date?: string;
+    public articleKey: string;
 
     constructor(name?: string ,clientName?:string, qty?:number, imgPath?:string, price?: number, place?: string,details?: string, phoneNumber?:string ,date?: string) {
         this.product_name = name;

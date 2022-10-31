@@ -16,13 +16,19 @@ export class ArticleItemComponent implements OnInit {
   }
 
   placeOrder() {
-    console.log(this.article.key!);
-    localStorage.setItem('currentArticleKey',this.article.key!);
+    localStorage.setItem('currentArticle',JSON.stringify(this.article));
+    /*localStorage.setItem('currentArticleKey',this.article.key!);
     localStorage.setItem('currentArticleQty',this.article.quantity?.toString()!);
     localStorage.setItem('currentArticleName',this.article.name!);
-    localStorage.setItem('currentArticleImgPath',this.article.imgPath!);
+    localStorage.setItem('currentArticleImgPath',this.article.imgPath!);*/
 
     this.router.navigate(['add-order'],{relativeTo:this.route});
+  }
+
+  onEdit() {
+    localStorage.setItem('currentArticle',JSON.stringify(this.article));
+    console.log(localStorage.getItem('currentArticle'));
+    this.router.navigate(['edit-article']);
   }
 
 }

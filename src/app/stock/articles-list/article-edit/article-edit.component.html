@@ -8,26 +8,15 @@
                         Header
                     </div>
                     <div class="card-body">
-                        <form #formData [formGroup]="orderForm" (ngSubmit)="onSubmit($event)" class="needs-validation">
+                        <form #formData [formGroup]="formEdit" (ngSubmit)="onSubmit()" class="needs-validation">
                             <div class="form-row my-4">
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="name">
-                                            <strong>Name</strong>
+                                            <strong> Article Name</strong>
                                             <br/>
                                         </label>
-                                        <input formControlName="name" class="form-control" type="text" id="name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row my-4">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="sellingPrice">
-                                            <strong>Selling Price</strong>
-                                            <br/>
-                                        </label>
-                                        <input  formControlName="sellingPrice" class="form-control" type="text" id="sellingPrice">
+                                        <input   formControlName="name" class="form-control" type="text" id="name">
                                     </div>
                                 </div>
                             </div>
@@ -44,30 +33,30 @@
                             <div class="form-row my-4">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="" for="details">
-                                          <strong>Details</strong>  
+                                        <label class="" for="p_price">
+                                          <strong>Purchase Price</strong>  
                                         </label>
-                                        <input  class="form-control" type="string" id="details" formControlName="details">
+                                        <input  class="form-control" type="number" id="purchasePrice" formControlName="pPrice"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row my-4">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="address">
-                                           <strong> Address </strong> 
+                                        <label for="s_price">
+                                           <strong>Selling Price</strong> 
                                         </label>
-                                        <input  class="form-control" type="string" id="address" formControlName="address">
+                                        <input class="form-control" type="number" id="sellingPrice" formControlName="sPrice"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row my-4">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="phoneNumber">
-                                           <strong>Phone number</strong> 
+                                        <label for="imgPath">
+                                           <strong>Image link</strong> 
                                         </label>
-                                        <input  class="form-control" type="tel" id="imgPath" formControlName="phoneNumber">
+                                        <input  type="text"class="form-control" type="text" id="imgPath" formControlName="imgPath"/>
                                     </div>
                                 </div>
                             </div>
@@ -75,8 +64,8 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for=""></label>
-                                        <button type="submit" [disabled]="!orderForm.valid" name="submit" class="btn btn-primary float-end"> Add Product</button>
-                                        <button  class="btn btn-secondary float-end mx-2" > Cancel</button>
+                                        <button type="submit" name="submit" class="btn btn-primary float-end" [disabled]="!formEdit.valid"> Add Product</button>
+                                        <button  class="btn btn-secondary float-end mx-2" (click)="onEditCancel()"> Cancel</button>
                                     </div>
                                 </div>
                             </div>

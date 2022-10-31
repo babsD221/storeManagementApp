@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/article.service';
 import { Article } from '../article.model';
@@ -13,11 +13,11 @@ import { StockService } from '../stock.service';
 export class ArticleAddComponent implements OnInit {
   @ViewChild('formData') formDataRef: ElementRef;
   articleForm = new FormGroup({
-    name: new FormControl,
-    quantity: new FormControl,
-    pPrice: new FormControl,
-    sPrice:new FormControl,
-    imgPath: new FormControl
+    name: new FormControl('',[Validators.required]),
+    quantity: new FormControl('',[Validators.required]),
+    pPrice: new FormControl('',[Validators.required]),
+    sPrice:new FormControl('',[Validators.required]),
+    imgPath: new FormControl('',[Validators.required])
   });
   article: Article = new Article();
   constructor(private stockService:StockService,private router: Router, private articleService:ArticleService) { }
@@ -38,16 +38,14 @@ export class ArticleAddComponent implements OnInit {
     {
      id =this.stockService.getStock().length +1
     }
-    console.log("identifiant " + id);
     this.article.id = id.toString();
     const name = this.articleForm.value.name!;
-    const quantity = this.articleForm.value.quantity!;
-    const pPrice = this.articleForm.value.pPrice!;
-    const sPrice = this.articleForm.value.sPrice!;
+    const quantity = Number(this.articleForm.value.quantity!);
+    const pPrice = Number(this.articleForm.value.pPrice!);
+    const sPrice = Number(this.articleForm.value.sPrice!);
     const imgPath = this.articleForm.value.imgPath!;
     const article = new Article('1',name,quantity,pPrice,sPrice,imgPath);
-    this.articleService.create(article).subscribe((resData)=>{
-      console.log(resData);
+    this.articleService.create(article).subscribe(()=>{
       this.router.navigate(['stock']);
     });
 

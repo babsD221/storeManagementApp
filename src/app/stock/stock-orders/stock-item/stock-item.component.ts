@@ -22,16 +22,24 @@ export class StockItemComponent implements OnInit {
   confirmOrder() {
     const sale: Sale = new Sale(this.order.product_name!,this.order.product_imgPath!,this.order.quantity!,this.order.sellingPrice!,this.order.clientName!
       ,this.order.address!,this.order.phoneNumber!,this.order.details!);
-      const articleKey = localStorage.getItem('currentArticleKey')!;
-      const articleQty = Number(localStorage.getItem('currentArticleQty')!);
+
       this.saleService.create(sale).subscribe(()=>{
-        this.articleService.update(articleKey,{quantity:articleQty-1});
-        this.router.navigate(['sales']);
+        console.log("before update");
+        this.articleService.get(this.order.articleKey).subscribe(resData =>{
+          const artcl= new Article(resData.id, resData.name,resData.quantity! -1 ,resData.purchasePrice,resData.sellingPrice, resData.imgPath);
+
+          this.articleService.update(this.order.articleKey,JSON.stringify(artcl)).subscribe(res =>console.log(res));
+          this.stockService.updateArticle(this.order.articleKey,artcl );
+          this.deleteOrder();
+          this.router.navigate(['sales']);
+        })
+
+       console.log(this.order.articleKey);
+
       });
   }
 
   deleteOrder() {
-    console.log(this.order.key);
    this.orderService.delete(this.order.key!).subscribe(()=>{
     this.stockService.deleteOrder(this.order.key!);
    });

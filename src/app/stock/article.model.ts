@@ -8,7 +8,6 @@ export class Article {
     public imgPath?: string;
 
     constructor(id?:string, name?: string, quantity?: number, purchasePrice?: number,sellingPrice?: number,imgPath?:string) {
-       this.id = id; 
         this.name = name;
         this.quantity = quantity;
         this.purchasePrice = purchasePrice;

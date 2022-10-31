@@ -8,13 +8,14 @@ import { StockOrdersComponent } from './stock/stock-orders/stock-orders.componen
 import { HomeComponent } from './home/home.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { AuthGard } from './services/aut-guard';
+import { ArticleEditComponent } from './stock/articles-list/article-edit/article-edit.component';
 
 const routes: Routes = [
   {path:'home',canActivate:[AuthGard],component: HomeComponent},
   { path: 'stock',canActivate:[AuthGard], component: StockComponent },
   {path: 'sales',canActivate:[AuthGard],component: SalesComponent},
   {path: 'orders',canActivate:[AuthGard],component: StockOrdersComponent},
-
+  {path: 'edit-article', canActivate:[AuthGard],component: ArticleEditComponent},
   { path: 'stock/add-article',canActivate:[AuthGard], component: ArticleAddComponent },
   { path: 'stock/add-order',canActivate:[AuthGard], component: StockOrderAddComponent },
   {path: '', redirectTo: '/home',pathMatch:'full'},

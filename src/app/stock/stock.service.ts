@@ -3,6 +3,7 @@ import { Article } from './article.model';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { Order } from '../models/order.model';
 import { Sale } from '../sale.model';
+import { ArticleService } from '../services/article.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class StockService {
   orderChanged$ = this.orderChanged.asObservable();
 
 
-  constructor() { }
+  constructor(private articleService: ArticleService) { }
 
   getStock() {
       return Object.assign([],this.stock);
@@ -53,11 +54,30 @@ getSales() {
   }
 
   addArticle(article:Article) {
-    console.log(this.stock);
     this.stock.push({...article});
-    console.log(this.stock.slice());
     this.stockChanged.next(Object.assign([],this.stock));
   }
+
+  updateArticle(key:string,article:Article) {
+    const index = this.stock.findIndex(art => art.key === key );
+    this.stock[index] = article;
+    this.stockChanged.next(Object.assign([],this.stock));
+  }
+
+  updateArticleQty(key:string) {
+    //const index = this.stock.findIndex(art => art.key === key );
+    this.articleService.get(key).subscribe((resData) => {
+      const newQty = resData.quantity! -1;
+      const article = new Article("1",resData.name, newQty, resData.purchasePrice, resData.sellingPrice,resData.imgPath);
+      const item = this.stock.findIndex(art => art.name == article.name);
+      this.stock[item] = article;
+      this.articleService.update(key,JSON.stringify(article)).subscribe(resData =>{
+      });
+      this.stockChanged.next(Object.assign([],this.stock));
+    });
+  }
+
+
 
   addOrder(order:Order) {
     this.orders.push({...order});
@@ -73,7 +93,6 @@ getSales() {
       this.orders = [];
     }
     else {
-      console.log()
       this.orders.splice(this.orders.indexOf(item));
     }
     this.orderChanged.next(Object.assign([],this.orders));

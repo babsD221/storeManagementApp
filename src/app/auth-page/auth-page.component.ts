@@ -30,25 +30,10 @@ export class AuthPageComponent implements OnInit {
   onSubmit() {
     const email= this.authForm.value.email!;
     const password = this.authForm.value.password!;
-    if(this.isLoginMode){
       this.authObs = this.authService.login(email,password) as Observable<authResponseData>;
-
-    }
-    else {
-      this.authObs = this.authService.SignUp(email,password) as Observable<authResponseData>;
-      /*this.authService.SignUp(email,password).subscribe(resData =>{
-        console.log(typeof(resData));
-
-      },
-      errorData => {
-        this.error = errorData;
-      })*/
-      this.authForm.reset();
-    }
-    this.authObs.subscribe(resData =>{
-      console.log(resData);
-      console.log("authenticated");
-      this.router.navigate(['home']);
+    this.authObs.subscribe((res) =>{
+      console.log(res)
+      this.router.navigate(['stock']);
     },
     errorData => {
       this.error = errorData;

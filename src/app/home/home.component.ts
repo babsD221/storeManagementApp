@@ -24,19 +24,19 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.saleService.getAll().subscribe(data => {
-      const sales:Sale[] = Object.keys(data).map((key:any) => {data[key].key = key; return data[key] })
+      if(data) {
+        const sales:Sale[] = Object.keys(data).map((key:any) => {data[key].key = key; return data[key] })
+        sales.forEach(sale =>{
+          this.totalSales += sale.sellingPrice! * sale.quantity!;
+          this.soldQuantity += sale.quantity!;
+        })
+      }
 
-      sales.forEach(sale =>{
-        this.totalSales += sale.sellingPrice! * sale.quantity!;
-        this.soldQuantity += sale.quantity!;
-      })
+      
     });
 
     this.orderService.getAll().subscribe(data => {
-      if(!data) {
-        this.orderNumbers = 0;
-      }
-      else {
+      if(data) {
         const orders:Order[] = Object.keys(data).map((key:any) => {data[key].key = key; return data[key] })
         this.orderNumbers = orders.length;
       }
@@ -44,11 +44,14 @@ export class HomeComponent implements OnInit {
     });
 
     this.articleService.getAll().subscribe(data => {
-      const articles:Article[] = Object.keys(data).map((key:any) => {data[key].key = key; return data[key] })
-      articles.forEach(article =>{
-        this.stockValue += article.purchasePrice! * article.quantity!;
-        this.stockQuantity += article.quantity!;
-      })
+      if(data) {
+        const articles:Article[] = Object.keys(data).map((key:any) => {data[key].key = key; return data[key] })
+        articles.forEach(article =>{
+          this.stockValue += article.purchasePrice! * article.quantity!;
+          this.stockQuantity += article.quantity!;
+        })
+      }
+
     });
       
     

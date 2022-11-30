@@ -31,6 +31,7 @@ export class AuthPageComponent implements OnInit {
     const email= this.authForm.value.email!;
     const password = this.authForm.value.password!;
       this.authObs = this.authService.login(email,password) as Observable<authResponseData>;
+
     this.authObs.subscribe(() =>{
       this.router.navigate(['home']);
     },

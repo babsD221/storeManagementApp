@@ -32,8 +32,7 @@ export class ArticleService {
   }
 
   update(key: string, value: any) {
-    console.log(key);
-    console.log(value);
+
     return this.http.put(environment.databaseURL + 'articles/'+ key + '.json',value);
 
   }

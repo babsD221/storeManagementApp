@@ -67,13 +67,12 @@ getSales() {
   updateArticleQty(key:string) {
     //const index = this.stock.findIndex(art => art.key === key );
     this.articleService.get(key).subscribe((resData) => {
-      console.log(resData.quantity);
+
       const newQty = resData.quantity! -1;
       const article = new Article("1",resData.name, newQty, resData.purchasePrice, resData.sellingPrice,resData.imgPath);
       const item = this.stock.findIndex(art => art.name == article.name);
       this.stock[item] = article;
       this.articleService.update(key,JSON.stringify(article)).subscribe(resData =>{
-        console.log(resData);
       });
       this.stockChanged.next(Object.assign([],this.stock));
     });

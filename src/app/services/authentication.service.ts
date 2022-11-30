@@ -88,19 +88,20 @@ export class AuthenticationService {
   }
 
   logout() {
-    this.user.next(null);
-    this.router.navigate(['auth']);
-    localStorage.removeItem('userData');
-    if(this.autoExpirationTimer) {
-      clearTimeout(this.autoExpirationTimer);
+    if(this.user) {
+      this.user.next(null);
+      this.router.navigate(['auth']);
+      localStorage.removeItem('userData');
+      if(this.autoExpirationTimer) {
+        clearTimeout(this.autoExpirationTimer);
+      }
+      this.autoExpirationTimer = null;
     }
-    this.autoExpirationTimer = null;
+
   }
 
   autoLogout(expirationDuration: number) {
-    this.autoExpirationTimer = setTimeout(() =>{
-      this.logout();
-    },expirationDuration)
+    this.autoExpirationTimer = setTimeout(this.logout,expirationDuration)
 
   }
 

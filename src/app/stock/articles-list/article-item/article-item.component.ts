@@ -27,7 +27,6 @@ export class ArticleItemComponent implements OnInit {
 
   onEdit() {
     localStorage.setItem('currentArticle',JSON.stringify(this.article));
-    console.log(localStorage.getItem('currentArticle'));
     this.router.navigate(['edit-article']);
   }
 

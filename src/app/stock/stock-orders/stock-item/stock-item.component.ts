@@ -24,7 +24,6 @@ export class StockItemComponent implements OnInit {
       ,this.order.address!,this.order.phoneNumber!,this.order.details!);
 
       this.saleService.create(sale).subscribe(()=>{
-        console.log("before update");
         this.articleService.get(this.order.articleKey).subscribe(resData =>{
           const artcl= new Article(resData.id, resData.name,resData.quantity! -1 ,resData.purchasePrice,resData.sellingPrice, resData.imgPath);
 
@@ -33,9 +32,6 @@ export class StockItemComponent implements OnInit {
           this.deleteOrder();
           this.router.navigate(['sales']);
         })
-
-       console.log(this.order.articleKey);
-
       });
   }
 

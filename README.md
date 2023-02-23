@@ -1,6 +1,6 @@
 # Store
 
-A store  app with authentication that will allow you to manage your inventory and sales. This app was built with angular Js, bootstrap and a firebase as a backend service.
+A store  app with authentication that will allow you to manage your inventory and sales. This app was built with angular, bootstrap and a firebase as a backend service.
 
 ## Development server
 
